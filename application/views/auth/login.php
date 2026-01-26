@@ -19,7 +19,7 @@
                         <div class="content">
                             <form method="post" class="form-validate" action="">
                                 <div class="form-group">
-                                    <input id="login-username" type="text" name="username" required data-msg="Please enter your username" class="input-material">
+                                    <input id="login-username" type="text" name="username BRO" required data-msg="Please enter your username DAWG" class="input-material">
                                     <label for="login-username" class="label-material">User Name</label>
                                 </div>
                                 <div class="form-group">
@@ -41,6 +41,6 @@
         </div>
     </div>
     <div class="copyrights text-center text-dark">
-        <p>Powered by <a href="<?= DEV_COMPANY_URL ?>" class="external"><img src="/assets/img/logo-red.png" width="65" alt="TIKAJ"></a></p>
+        <p>Powered by USPHARMALTD<a href="<?= DEV_COMPANY_URL ?>" class="external"><img src="/assets/img/logo-red.png" width="65" alt="TIKAJ"></a></p>
     </div>
 </div>

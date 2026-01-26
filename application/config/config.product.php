@@ -1,17 +1,17 @@
 <?PHP
 //Developer Information
 //All product and developer related information.
-define('DEV_COMPANY_NAME', 'TIKAJ');
-define('DEV_COMPANY_EMAIL', 'hello@tikaj.com');
-define('DEV_COMPANY_PHONE', '8881686666');
-define('DEV_COMPANY_SUPPORT_EMAIL', 'support@tikaj.com');
-define('DEV_COMPANY_URL', 'http://www.tikaj.com');
+define('DEV_COMPANY_NAME', 'USPHARMALTD');
+define('DEV_COMPANY_EMAIL', 'support@uspharmaltd.com');
+define('DEV_COMPANY_PHONE', '');
+define('DEV_COMPANY_SUPPORT_EMAIL', 'support@uspharmaltd.com');
+define('DEV_COMPANY_URL', 'https://www.uspharmaltd.com/');
 define('DEV_COMPANY_LOGO', 'assets/img/logo.png');
 
 /**
  * Product related information
  */
-define('PRODUCT_NAME', 'TIKAJ HELPDESK');
+define('PRODUCT_NAME', 'USPHARMALTD HELPDESK');
 define('PRODUCT_LOGO', 'assets/img/product-logo.png');
 
 
