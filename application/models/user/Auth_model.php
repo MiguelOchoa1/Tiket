@@ -18,13 +18,74 @@ class Auth_model extends BaseMySQL_model
 		$this->Session = new Session_model();
 
 		$this->type_forgot = "forgot_password";
+		
+		// Load LDAP library
+		$this->CI =& get_instance();
+		$this->CI->load->library('ldap_auth');
+		$this->CI->config->load('ldap', TRUE);
 	}
 
 	public function login($data)
 	{
 		$username = trim($data['username']);
 		$password = $data['password'];
-		$user = $this->User->getOneItem($this->User->getByOR("*", array('username' => $username)));
+		
+		// Try LDAP authentication first (for non-demo accounts)
+		if (strpos($username, '.demo') === false) {
+			$ldap_config = $this->CI->config->item('ldap');
+			if ($ldap_config['ldap_enabled']) {
+				log_message('debug', 'Attempting LDAP authentication for: ' . $username);
+				$ldap_user = $this->CI->ldap_auth->authenticate($username, $password);
+				
+				if ($ldap_user) {
+					log_message('info', 'LDAP authentication successful for: ' . $username);
+					
+					// Check if user exists in database
+					$users = $this->User->getBy('*', array('username' => $username));
+					$user = $this->User->getOneItem($users);
+					
+					// Auto-create user if enabled and user doesn't exist
+					if (!$user && $ldap_config['ldap_auto_create_user']) {
+						log_message('info', 'Auto-creating user account for: ' . $username);
+						$full_name = trim($ldap_user['first_name'] . ' ' . $ldap_user['last_name']);
+						$user_id = $this->User->register([
+							'username' => $ldap_user['username'],
+							'email' => $ldap_user['email'],
+							'name' => $full_name,
+							'password' => uniqid(), // Random password, won't be used
+							'type' => $ldap_config['ldap_default_user_type'],
+							'status' => STATUS_ACTIVE
+						]);
+						
+						if ($user_id) {
+							$users = $this->User->getBy('*', array('id' => $user_id));
+							$user = $this->User->getOneItem($users);
+						}
+					}
+					
+					if ($user && $user['status'] == STATUS_ACTIVE) {
+						unset($user['password']);
+						return $user;
+					}
+				}
+			}
+		}
+		
+		// Fall back to database authentication (for demo accounts and if LDAP fails)
+		log_message('debug', 'Attempting database authentication for: ' . $username);
+		$users = $this->User->getBy('*', array('username' => $username));
+		$user = $this->User->getOneItem($users);
+		
+		// Debug logging
+		log_message('debug', 'Login attempt - Username: ' . $username);
+		log_message('debug', 'User found: ' . ($user ? 'yes' : 'no'));
+		if ($user) {
+			log_message('debug', 'User status: ' . $user['status']);
+			log_message('debug', 'Password hash in DB: ' . $user['password']);
+			log_message('debug', 'Password hash computed: ' . $this->User->hashPassword($password));
+			log_message('debug', 'Passwords match: ' . ($user['password'] === $this->User->hashPassword($password) ? 'yes' : 'no'));
+		}
+		
 		if ($user && $user['password'] === $this->User->hashPassword($password) && $user['status'] == STATUS_ACTIVE)
 		{
 			unset($user['password']);

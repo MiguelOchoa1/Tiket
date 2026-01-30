@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 include_once __DIR__."/constants.permissions.php";
 
 //Root Url of ur site
-define('BASE_URL', 'http://localhost/tiket/');
+define('BASE_URL', 'http://helpdesk.us/TicketSystem/');
 
 define('PAGE_LOADER', BASE_URL.'assets/img/loading.webp');
 

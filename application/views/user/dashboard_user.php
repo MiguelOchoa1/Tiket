@@ -167,6 +167,160 @@
         </div>
     </section>
 
+    <!-- Custom Application Links Section -->
+    <section class="dashboard-header no-padding-bottom col-left-no-padding" style="margin-top: 2em;">
+        <div class="container">
+            <div class="row">
+                <!-- USpharma Applications -->
+                <div class="col-md-4">
+                    <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius" style="cursor: pointer;" onclick="toggleApplications()">
+                        <div class="icon bg-blue"><i class="fa fa-th"></i></div>
+                        <div class="text"><strong>Applications</strong><br>
+                            <small>USpharma Applications</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drives -->
+                <div class="col-md-4">
+                    <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius" style="cursor: pointer;" onclick="toggleDrives()">
+                        <div class="icon bg-purple"><i class="fa fa-hdd-o"></i></div>
+                        <div class="text"><strong>Drives</strong><br>
+                            <small>Network Drives</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Printers -->
+                <div class="col-md-4">
+                    <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius" style="cursor: pointer;" onclick="togglePrinters()">
+                        <div class="icon bg-teal"><i class="fa fa-print"></i></div>
+                        <div class="text"><strong>Printers</strong><br>
+                            <small>Network Printers</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applications Dropdown Content -->
+            <div id="applications-content" style="display: none; margin-top: 1em;">
+                <div class="card custom-border-radius">
+                    <div class="card-header custom-border-radius">
+                        <h4>USpharma Applications</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2 text-center mb-3">
+                                <a href="https://uspharma.dataninja.com/" target="_blank" class="app-link">
+                                    <img src="<?= BASE_URL ?>assets/img/DN.png" alt="DN" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">DN</p>
+                                </a>
+                            </div>
+                            <div class="col-md-2 text-center mb-3">
+                                <a href="#" class="app-link">
+                                    <img src="<?= BASE_URL ?>assets/img/adobe.png" alt="Adobe" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">Adobe</p>
+                                </a>
+                            </div>
+                            <div class="col-md-2 text-center mb-3">
+                                <a href="https://chatusp.uspharmaltd.com/" target="_blank" class="app-link">
+                                    <img src="<?= BASE_URL ?>assets/img/aius.png" alt="Aius" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">Aius</p>
+                                </a>
+                            </div>
+                            <div class="col-md-2 text-center mb-3">
+                                <a href="http://mlksrv18.uspharmaltd.com/IsoTrain642/Default.aspx" target="_blank" class="app-link">
+                                    <img src="<?= BASE_URL ?>assets/img/IsoTrain.jpg" alt="IsoTrain" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">IsoTrain</p>
+                                </a>
+                            </div>
+                            <div class="col-md-2 text-center mb-3">
+                                <a href="https://mlksrv17.uspharmaltd.com/usplusmprod/login" target="_blank" class="app-link">
+                                    <img src="<?= BASE_URL ?>assets/img/GMP.jpg" alt="GMP" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">GMP</p>
+                                </a>
+                            </div>
+                            <div class="col-md-2 text-center mb-3">
+                                <a href="#" class="app-link">
+                                    <img src="<?= BASE_URL ?>assets/img/M365.jpg" alt="M365" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">M365</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drives Dropdown Content -->
+            <div id="drives-content" style="display: none; margin-top: 1em;">
+                <div class="card custom-border-radius">
+                    <div class="card-header custom-border-radius">
+                        <h4>Network Drives</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 text-center mb-3">
+                                <a href="<?= BASE_URL ?>assets/scripts/map_public_drive.vbs" class="app-link" download>
+                                    <img src="<?= BASE_URL ?>assets/img/drives.jpg" alt="Public Drive" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">Public Drive</p>
+                                </a>
+                            </div>
+                            <div class="col-md-4 text-center mb-3">
+                                <a href="<?= BASE_URL ?>assets/scripts/map_quality_drive.vbs" class="app-link" download>
+                                    <img src="<?= BASE_URL ?>assets/img/drives.jpg" alt="Quality Drive" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">Quality Drive</p>
+                                </a>
+                            </div>
+                            <div class="col-md-4 text-center mb-3">
+                                <a href="#" class="app-link">
+                                    <img src="<?= BASE_URL ?>assets/img/drives.jpg" alt="Scandocs" style="width: 80px; height: 80px; object-fit: contain;">
+                                    <p class="mt-2">Scandocs</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Printers Dropdown Content -->
+            <div id="printers-content" style="display: none; margin-top: 1em;">
+                <div class="card custom-border-radius">
+                    <div class="card-header custom-border-radius">
+                        <h4>Network Printers</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 text-center mb-3">
+                                <a href="#" onclick="alert('Printer: HP LaserJet Pro\\nLocation: 1st Floor\\nStatus: Ready')" class="app-link">
+                                    <i class="fa fa-print fa-3x text-primary"></i>
+                                    <p class="mt-2">HP LaserJet - 1F</p>
+                                </a>
+                            </div>
+                            <div class="col-md-3 text-center mb-3">
+                                <a href="#" onclick="alert('Printer: Canon ImageRunner\\nLocation: 2nd Floor\\nStatus: Ready')" class="app-link">
+                                    <i class="fa fa-print fa-3x text-success"></i>
+                                    <p class="mt-2">Canon IR - 2F</p>
+                                </a>
+                            </div>
+                            <div class="col-md-3 text-center mb-3">
+                                <a href="#" onclick="alert('Printer: Xerox ColorCube\\nLocation: 3rd Floor\\nStatus: Ready')" class="app-link">
+                                    <i class="fa fa-print fa-3x text-info"></i>
+                                    <p class="mt-2">Xerox CC - 3F</p>
+                                </a>
+                            </div>
+                            <div class="col-md-3 text-center mb-3">
+                                <a href="#" onclick="alert('Printer: HP OfficeJet\\nLocation: Admin\\nStatus: Ready')" class="app-link">
+                                    <i class="fa fa-print fa-3x text-warning"></i>
+                                    <p class="mt-2">HP OfficeJet - Admin</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         var PIECHART = $('#pieChart');
         var myPieChart = new Chart(PIECHART, {
@@ -202,3 +356,73 @@
         });
 
     </script>
+    <script>
+        // Toggle Applications section
+        function toggleApplications() {
+            var content = document.getElementById('applications-content');
+            var drives = document.getElementById('drives-content');
+            var printers = document.getElementById('printers-content');
+            
+            drives.style.display = 'none';
+            printers.style.display = 'none';
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+
+        // Toggle Drives section
+        function toggleDrives() {
+            var content = document.getElementById('drives-content');
+            var apps = document.getElementById('applications-content');
+            var printers = document.getElementById('printers-content');
+            
+            apps.style.display = 'none';
+            printers.style.display = 'none';
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+
+        // Toggle Printers section
+        function togglePrinters() {
+            var content = document.getElementById('printers-content');
+            var apps = document.getElementById('applications-content');
+            var drives = document.getElementById('drives-content');
+            
+            apps.style.display = 'none';
+            drives.style.display = 'none';
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+    </script>
+
+    <style>
+        .app-link {
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .app-link:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+        
+        .bg-blue { background-color: #007bff; }
+        .bg-purple { background-color: #6f42c1; }
+        .bg-teal { background-color: #20c997; }
+    </style>

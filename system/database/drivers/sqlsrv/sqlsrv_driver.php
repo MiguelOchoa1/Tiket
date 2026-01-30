@@ -121,6 +121,9 @@ class CI_DB_sqlsrv_driver extends CI_DB {
 	 */
 	public function db_connect($pooling = FALSE)
 	{
+		// Suppress SQLSRV warnings to prevent connection issues with SQL Server
+		sqlsrv_configure('WarningsReturnAsErrors', 0);
+		
 		$charset = in_array(strtolower($this->char_set), array('utf-8', 'utf8'), TRUE)
 			? 'UTF-8' : SQLSRV_ENC_CHAR;
 

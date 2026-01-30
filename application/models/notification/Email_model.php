@@ -2,7 +2,7 @@
 
 require __DIR__ . "/constants.php";
 // require __DIR__ . "/../core/Template_model.php";
-include_once './vendor/autoload.php';
+// include_once './vendor/autoload.php';
 use EmailReplyParser\Parser\EmailParser;
 
 

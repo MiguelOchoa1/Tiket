@@ -396,7 +396,16 @@ class BaseMySQL_model extends MY_Model
         $res = $this->db->select($select)->where($where);
         if($limit)
             $res->limit($limit);
-        return $res->get($this->table)->result_array();
+        
+        $query = $res->get($this->table);
+        
+        // Check if query failed
+        if ($query === FALSE) {
+            log_message('error', 'getBy query failed for table: ' . $this->table);
+            return array();
+        }
+        
+        return $query->result_array();
     }
 
     /**
@@ -408,7 +417,15 @@ class BaseMySQL_model extends MY_Model
     public function getByOR($select = null, $where = null)
     {
         if ($select == null) $select = "*";
-        return $this->db->select($select)->or_where($where)->get($this->table)->result_array();
+        $query = $this->db->select($select)->or_where($where)->get($this->table);
+        
+        // Check if query failed
+        if ($query === FALSE) {
+            log_message('error', 'getByOR query failed for table: ' . $this->table);
+            return array();
+        }
+        
+        return $query->result_array();
     }
 
 
