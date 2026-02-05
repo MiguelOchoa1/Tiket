@@ -130,15 +130,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             display: false
                         },
                         tooltip: {
-                            enabled: false
+                            enabled: true
                         }
                     }
                 },
                 plugins: [{
+                    id: 'centerText',
                     afterDatasetsDraw(chart) {
                         const {ctx, chartArea: {left, top, width, height}} = chart;
                         ctx.save();
-                        ctx.font = 'bold 20px sans-serif';
+                        ctx.font = 'bold 24px sans-serif';
                         ctx.fillStyle = '#333';
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
@@ -200,4 +201,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     });
     </script>
+
 
