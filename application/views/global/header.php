@@ -42,7 +42,7 @@
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/custom.css?v=20260205chartfix">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/custom.css?v=20260205zhartfix">
     <!-- Favicon-->
     <link rel="shortcut icon" href="<?= BASE_URL ?>assets/img/favicon.ico">
     <!-- Toastr -->
@@ -135,6 +135,8 @@
                     <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                         <li class="dotted-add-button"><a href="<?= BASE_URL ?>tickets/create_new"><i
                                         class="fa fa-plus-square"></i> New ticket</a></li>
+                        <li class="dotted-add-button"><a href="<?= BASE_URL ?>user/list" title="All Users"><i
+                                        class="fa fa-users"></i></a></li>
 
 
                         <li class="nav-item dropdown">
@@ -180,6 +182,21 @@
                 </div>
             </header>
             <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- First Row: All Tickets + Severity Chart -->
         <div class="row dashboard-top-row align-items-stretch no-gutters" style="margin-left:0; margin-right:0;">
             <div class="col-md-3" style="padding-left:1px; padding-right:1px;">
-                <a href="<?= BASE_URL ?>tickets" class="w-100" style="display:block; width:100%;">
+                <a href="<?= BASE_URL ?>tickets/list_all" class="w-100" style="display:block; width:100%;">
                     <div class="statistic statistic-lg bg-white has-shadow custom-border-radius" style="height: 360px; min-height: 360px; margin:0; padding: 14px 16px; width:100%; display: flex; flex-direction: column; justify-content: flex-start;">
                         <div class="statistic-header" style="align-self: flex-start;">All Tickets</div>
                         <div class="text" style="width: 100%; display: flex; align-items: center; justify-content: center; flex: 1; font-size: 120px; line-height: 1;"><strong><?= $stats['total_tickets'] ?></strong></div>
@@ -67,12 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
             </div>
-            <div class="col-md-3" style="padding-left:1px; padding-right:1px;">
-                <div class="statistic statistic-lg bg-white has-shadow custom-border-radius" style="height: 360px; min-height: 360px; margin:0; padding: 14px 16px; width:100%; display: flex; flex-direction: column; justify-content: flex-start;">
-                    <div class="statistic-header" style="align-self: flex-start;">Total Users</div>
-                    <div class="text" style="width: 100%; display: flex; align-items: center; justify-content: center; flex: 1;"><strong style="font-size: 120px; line-height: 1;"><?= $stats['total_users'] ?></strong></div>
-                </div>
-            </div>
+
             <div class="col-md-3" style="padding-left:1px; padding-right:1px;">
                 <a href="<?= BASE_URL ?>tickets/assigned_tickets" class="w-100" style="display:block; width:100%;">
                     <div class="statistic statistic-lg bg-white has-shadow custom-border-radius" style="height: 360px; min-height: 360px; margin:0; padding: 14px 16px; width:100%; display: flex; flex-direction: column; justify-content: flex-start;">
@@ -89,6 +84,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </a>
             </div>
+             <div class="col-md-3" style="padding-left:1px; padding-right:1px;">
+                 <a href="<?= BASE_URL ?>tickets/list_all" class="w-100" style="display:block; width:100%;">
+                     <div class="statistic statistic-lg bg-white has-shadow custom-border-radius" style="height: 360px; min-height: 360px; margin:0; padding: 14px 16px; width:100%; display: flex; flex-direction: column; justify-content: flex-start;">
+                         <div class="statistic-header" style="align-self: flex-start;">All Tickets</div>
+                         <div class="text" style="width: 100%; display: flex; align-items: center; justify-content: center; flex: 1;"><strong style="font-size: 120px; line-height: 1;"><?= $stats['total_tickets'] ?></strong></div>
+                     </div>
+                 </a>
+             </div>
         </div>
     </div>
 </section>
@@ -130,7 +133,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             display: false
                         },
                         tooltip: {
-                            enabled: true
+                            enabled: false
                         }
                     }
                 },
@@ -153,9 +156,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         // Ticket Status by Severity Bar Chart
         var severityCtx = document.getElementById('severity-bar-graph');
         if (severityCtx) {
-            var openCount = parseInt('<?= ["open_tickets"] ?>') || 0;
-            var assignedCount = parseInt('<?= ["assigned_tickets"] ?>') || 0;
-            var closedCount = parseInt('<?= ["closed_tickets"] ?>') || 0;
+            var openCount = parseInt('<?= $stats["open_tickets"] ?>') || 0;
+            var assignedCount = parseInt('<?= $stats["assigned_tickets"] ?>') || 0;
+            var closedCount = parseInt('<?= $stats["closed_tickets"] ?>') || 0;
 
             var severityChart = new Chart(severityCtx, {
                 type: 'bar',
@@ -195,14 +198,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             }
                         }]
                     },
-                    legend: {
-                        display: true,
-                        position: 'top'
+                    legend: { display: false, position: 'top'
                     }
                 }
             });
         }
     });
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

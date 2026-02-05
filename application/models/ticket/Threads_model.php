@@ -118,4 +118,21 @@ class Threads_model extends BaseMySQL_model
     }
 
 // End of class
+
+    public function getRecentTickets($where = array(), $limit = 5)
+    {
+        $query = $this->db->where($where)
+                         ->order_by('created', 'DESC')
+                         ->limit($limit)
+                         ->get($this->table);
+        
+        if ($query === FALSE) {
+            log_message('error', 'getRecentTickets query failed');
+            return array();
+        }
+        
+        return $query->result_array();
+    }
+
+// End of class
 }

@@ -8,39 +8,47 @@
             <div class="row">
                 <!-- Statistics -->
                 <div class="col-md-3">
-                    <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
-                        <div class="icon bg-green"><i class="fa fa-tasks"></i></div>
-                        <div class="text"><strong><?= $stats['total_tickets'] ?></strong><br>
-                            <small>All Tickets</small>
+                    <a href="<?= BASE_URL ?>tickets/my_tickets" style="text-decoration: none; color: inherit;">
+                        <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
+                            <div class="icon bg-green"><i class="fa fa-tasks"></i></div>
+                            <div class="text"><strong><?= $stats['total_tickets'] ?></strong><br>
+                                <small>All Tickets</small>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
-                        <div class="icon bg-orange"><i class="fa fa-ticket"></i></div>
-                        <div class="text"><strong><?= $stats['open_tickets'] ?></strong><br>
-                            <small>Open Tickets</small>
+                    <a href="<?= BASE_URL ?>tickets/open_tickets" style="text-decoration: none; color: inherit;">
+                        <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
+                            <div class="icon bg-orange"><i class="fa fa-ticket"></i></div>
+                            <div class="text"><strong><?= $stats['open_tickets'] ?></strong><br>
+                                <small>Open Tickets</small>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
-                        <div class="icon bg-info"><i class="fa fa-user"></i></div>
-                        <div class="text"><strong><?= $stats['assigned_tickets'] ?></strong><br>
-                            <small>Assigned Tickets</small>
+                    <a href="<?= BASE_URL ?>tickets/create_new" style="text-decoration: none; color: inherit;">
+                        <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
+                            <div class="icon bg-info"><i class="fa fa-user"></i></div>
+                            <div class="text"><strong><?= $stats['assigned_tickets'] ?></strong><br>
+                                <small>New Ticket</small>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
-                        <div class="icon bg-red"><i class="fa fa-check"></i></div>
-                        <div class="text"><strong><?= $stats['closed_tickets'] ?></strong><br>
-                            <small>Closed Tickets</small>
+                    <a href="<?= BASE_URL ?>tickets/closed_tickets" style="text-decoration: none; color: inherit;">
+                        <div class="statistic d-flex align-items-center bg-white has-shadow custom-border-radius">
+                            <div class="icon bg-red"><i class="fa fa-check"></i></div>
+                            <div class="text"><strong><?= $stats['closed_tickets'] ?></strong><br>
+                                <small>Closed Tickets</small>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

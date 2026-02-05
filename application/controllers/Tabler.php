@@ -1,4 +1,4 @@
-<?PHP
+﻿<?PHP
 
 class Tabler extends MY_Tabler
 {
@@ -20,7 +20,7 @@ class Tabler extends MY_Tabler
         // if (isset($_GET['username']) && $_GET['username'])
 		// 	$filter['owner'] = $_GET['username'];
 
-        if(!in_array((int)$this->Session->getLoggedDetails()['type'], array(USER_MANAGER, USER_ADMIN, USER_AGENT)))
+        if(!in_array((int)$this->Session->getLoggedDetails()['type'], array(USER_ADMIN, USER_AGENT)))
             $filter['owner'] = $username;
         
         if(isset($_GET['type'])&& $_GET['type']){
@@ -37,6 +37,8 @@ class Tabler extends MY_Tabler
                 $filter['status'] = TICKET_STATUS_OPEN;
             else if($type=="closed")
                 $filter['status'] = TICKET_STATUS_CLOSED;
+            else if($type=="all_tickets")
+                $filter = array();
         }
 
 
@@ -94,3 +96,7 @@ class Tabler extends MY_Tabler
     }
 
 }
+
+
+
+

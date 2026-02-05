@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class Tickets extends MY_Controller
 {
@@ -70,7 +70,7 @@ class Tickets extends MY_Controller
         $ticket = $this->uri->segment(3);
         $data['title'] = 'View Ticket';
         $usertype = $this->Session->getLoggedDetails()['type'];
-        $data['privilege'] = ($usertype==USER_MANAGER || $usertype == USER_ADMIN)? true : false;
+        $data['privilege'] = ($usertype == USER_ADMIN)? true : false;
         if (!$ticket) {
             $this->render('View Ticket', 'unauthorised', $data);
         } else {
@@ -82,3 +82,5 @@ class Tickets extends MY_Controller
     }
 
 }
+
+

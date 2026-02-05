@@ -47,7 +47,6 @@ define('URL_ERROR', URL_PREFIX . '/auth/error');
 define('URL_LOGIN', URL_PREFIX . '/auth/login');
 define('URL_POST_LOGIN_USER', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_AGENT', URL_PREFIX . '/user/dashboard');
-define('URL_POST_LOGIN_MANAGER', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_ADMIN', URL_PREFIX. '/user/dashboard');
 define('URL_POST_LOGIN_LIMITED', URL_PREFIX . '/user/dashboard');
 define('URL_POST_LOGIN_DEACTIVATED', URL_PREFIX . '/deactivated/dashboard');
@@ -65,3 +64,4 @@ define('CLIENT_ADMIN_PAYTM_NUMBER', 9999999999);
 define('CLIENT_ADMIN_UPI', 'username@upi');
 
 define('DISABLE_POWERED_BY', true);
+

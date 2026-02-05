@@ -1,21 +1,6 @@
 </div>
 </div>
 </div>
-<!-- Page Footer-->
-<footer class="main-footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <p><?= DEV_COMPANY_NAME ?> &copy; 2026</p>
-            </div>
-            <div class="col-sm-6 text-right">
-                <p>Powered by &nbsp;<a href="<?= DEV_COMPANY_URL ?>" class="external powered-logo"><img
-                                src="/assets/img/uspharma.jpg" width="65" alt="USpharma"></a></p>
-                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-            </div>
-        </div>
-    </div>
-</footer>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">

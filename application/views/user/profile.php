@@ -22,12 +22,6 @@
                         </div>
                         <div class="col-md-12 p-2">
                             <div class="row">
-                                <div class="col-md-3  font-weight-bold">Mobile</div>
-                                <div class="col-md-9"><?= $user_details['mobile'] ?></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 p-2">
-                            <div class="row">
                                 <div class="col-md-3  font-weight-bold">Username</div>
                                 <div class="col-md-9"><?= $user_details['username'] ?></div>
                             </div>
@@ -53,7 +47,6 @@
                         <hr>
                         <div class="col-md-12 p-2">
                             <div class="row p-2 ">
-                                <a href="<?= BASE_URL ?>user/change_password" class="btn btn-secondary pull-right mr-3">Change Password</a>
                                 <!-- <a href="<?= BASE_URL ?>user/profile_update" class="btn btn-success pull-right">Update Profile</a> -->
                             </div>
                         </div>

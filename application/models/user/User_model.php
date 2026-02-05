@@ -87,11 +87,16 @@ class User_model extends BaseMySQL_model
 	 * @return mixed
 	 */
 	public function register($data)
-	{
-		$data['password'] = $this->hashPassword($data['password']);
-		$result = parent::add($data);
-		return $result;
-	}
+{
+$data['password'] = $this->hashPassword($data['password']);
+$data['created'] = time();
+$data['updated'] = time();
+if (!isset($data['mobile']) || $data['mobile'] === '') {
+$data['mobile'] = '0000000000';
+}
+$result = parent::add($data);
+return $result;
+}
 
 
 	/**
@@ -235,3 +240,12 @@ class User_model extends BaseMySQL_model
 
 
 }
+
+
+
+
+
+
+
+
+

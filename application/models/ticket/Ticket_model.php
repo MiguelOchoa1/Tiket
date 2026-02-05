@@ -110,13 +110,15 @@ class Ticket_model extends BaseMySQL_model {
             $info['owner'] = $this->Session->getLoggedDetails()['username'];
         if (!empty($info['subject']) && !empty($info['message'])) {
 
-            $info = array_merge($info, array('ticket_no' => NULL, 'created' => time(), 'status' => TICKET_STATUS_OPEN));
+            $info = array_merge($info, array('ticket_no' => NULL, 'created' => time(), 'updated' => time(), 'progress' => 0, 'status' => TICKET_STATUS_OPEN));
             $res = parent::add($info);
             if($res){
                 $ticket_no = $this->getTicketNoFromID($res);
                 $result = parent::setByID($res, array('ticket_no' => $ticket_no));
                 // add attachment reference
-                $this->addAttachmentRef($attachments['attachments'], $ticket_no);
+                if(!empty($attachments) && isset($attachments['attachments'])) {
+                    $this->addAttachmentRef($attachments['attachments'], $ticket_no);
+                }
                 // send update Email
                 $usernames = array($info['owner']);
                 array_merge($usernames, explode(';', $info['cc']));
@@ -146,10 +148,12 @@ class Ticket_model extends BaseMySQL_model {
 
     public function updateTicket($data, $meta){
         if(!empty($data['id'])){
-            $info = array_merge($data, array('updated'=> time()));
-            $res = parent::setByID($data['id'], $data);
+            $id = $data['id'];
+            unset($data['id']); // Remove id from data to prevent updating identity column
+            $data['updated'] = time();
+            $res = parent::setByID($id, $data);
 
-            $info = parent::getBy(array('owner', 'cc', 'ticket_no', 'subject'), array('id'=>$data['id']));
+            $info = parent::getBy(array('owner', 'cc', 'ticket_no', 'subject'), array('id'=>$id));
      
             // send update Email
             // if(!empty($info) && $res){
@@ -197,6 +201,7 @@ class Ticket_model extends BaseMySQL_model {
 
     public function add_thread($data, $sendEmail=FALSE)
     {
+        $data['ref'] = 0;
         $res=$this->db->insert(TABLE_MESSAGES, $data);
         $info = parent::getBy(array('owner', 'cc', 'ticket_no', 'subject'), array('ticket_no'=>$data['ticket']));
      
@@ -366,3 +371,9 @@ class Ticket_model extends BaseMySQL_model {
     }
 
 }
+
+
+
+
+
+

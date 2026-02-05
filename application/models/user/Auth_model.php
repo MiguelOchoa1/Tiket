@@ -54,8 +54,10 @@ class Auth_model extends BaseMySQL_model
 							'name' => $full_name,
 							'password' => uniqid(), // Random password, won't be used
 							'type' => $ldap_config['ldap_default_user_type'],
-							'status' => STATUS_ACTIVE
-						]);
+							'status' => STATUS_ACTIVE,
+                                                        'created' => time(),
+                                                        'updated' => time()
+                                                ]);
 						
 						if ($user_id) {
 							$users = $this->User->getBy('*', array('id' => $user_id));
@@ -197,3 +199,6 @@ class Auth_model extends BaseMySQL_model
 
 
 }
+
+
+

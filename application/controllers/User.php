@@ -56,9 +56,9 @@ class User extends MY_Controller
 	public function dashboard_manager()
 	{
 		$data['stats']['total_tickets'] = count($this->Tickets->getBy(null,array()));
-		$data['stats']['open_tickets'] = count($this->Tickets->getBy(null,array('status' => TICKET_STATUS_OPEN)));
-		$data['stats']['assigned_tickets'] = count($this->Tickets->getBy(null,array('status' => TICKET_STATUS_ASSIGNED)));
-		$data['stats']['closed_tickets'] = count($this->Tickets->getBy(null,array('status' => TICKET_STATUS_CLOSED)));
+		$data['stats']['open_tickets'] = count($this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_OPEN)));
+		$data['stats']['assigned_tickets'] = count($this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_ASSIGNED)));
+		$data['stats']['closed_tickets'] = count($this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_CLOSED)));
 
 		$data['stats']['total_users'] = count($this->Users->getBy(null,array('type' => USER_MEMBER)));
 		$data['stats']['total_agents'] = count($this->Users->getBy(null, array('type' => USER_AGENT)));
@@ -89,10 +89,10 @@ class User extends MY_Controller
 		count($this->Tickets->getBy(null,array('severity'=>TICKET_SEVERITY_LOW, 'status' => TICKET_STATUS_CLOSED))));
 
 
-		$data['recent']['created'] = $this->Tickets->getBy(null,array(), 5);
-		$data['recent']['open'] = $this->Tickets->getBy(null,array('status' => TICKET_STATUS_OPEN), 5);
-		$data['recent']['assigned'] = $this->Tickets->getBy(null,array('status' => TICKET_STATUS_ASSIGNED), 5);
-		$data['recent']['closed'] = $this->Tickets->getBy(null,array('status' => TICKET_STATUS_CLOSED), 5);
+		$data['recent']['created'] = $this->Tickets->getRecentTickets(null, 5);
+		$data['recent']['open'] = $this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_OPEN), 5);
+		$data['recent']['assigned'] = $this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_ASSIGNED), 5);
+		$data['recent']['closed'] = $this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_CLOSED), 5);
 		$this->render('Dashboard', 'user/dashboard_manager', $data);
 	}
 
@@ -145,3 +145,5 @@ class User extends MY_Controller
 
 // End of Class
 }
+
+

@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'    => '',
-    'hostname' => 'MLKDBS20\MLKDBS20',
+    'hostname' => 'mlksec01',
 	'username' => '',
 	'password' => '',
 	'database' => 'Ticketing_System',
@@ -92,8 +92,11 @@ $db['default'] = array(
     'failover' => array(),
     'save_queries' => TRUE,
     'encrypt' => FALSE,
+    'UID' => '','PWD' => '',
     'compress' => FALSE,
     'stricton' => FALSE,
     'failover' => array(),
     'save_queries' => TRUE
 );
+
+

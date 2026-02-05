@@ -31,7 +31,7 @@ define('CLIENT_WITHDRAWAL_7_DAY_OLD',4);
 define('CURRENCY_SIGN', '₹');
 define('MEMBER_ID_PREFIX', 'HHSW');
 define('MEMBER_ID_LENGTH', 6);
-define('CLIENT_TICKET_PREFIX', 'TIK-TIKAJ-');
+define('CLIENT_TICKET_PREFIX', 'USP-');
 define('CLIENT_TICKET_ID_LENGTH', 6);
 
 //Client Mail Settings
@@ -145,3 +145,4 @@ define('AIOPIN', CLIENT_UPLINE_DONATION_AMT + CLIENT_UPPERLINE_DONATION_AMT + CL
 // Constants for selecting theme
 define('CLIENT_SYSTEM_THEME', "custom.css");
 //define('CLIENT_SYSTEM_THEME', "custom-flat.css");
+

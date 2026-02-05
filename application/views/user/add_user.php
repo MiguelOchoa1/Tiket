@@ -29,8 +29,7 @@
                                             <option value=""> - Select -</option>
                                             <option value="10">User</option>
                                             <option value="60">Agent</option>
-                                            <option value="80">Manager</option>
-                                        </select>
+                                            </select>
                                     </div>   
                                     <div class="form-group  col-md-6">
                                         <label class="form-control-label">Password</label>
