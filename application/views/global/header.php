@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -42,7 +42,7 @@
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/custom.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/custom.css?v=20260205final">
     <!-- Favicon-->
     <link rel="shortcut icon" href="<?= BASE_URL ?>assets/img/favicon.ico">
     <!-- Toastr -->
@@ -148,8 +148,6 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="<?= BASE_URL ?>user/profile"><i
                                             class="fa fa-user bg-info"></i> Profile</a>
-                                <a class="dropdown-item" href="<?= BASE_URL ?>user/change_password""><i
-                                        class="fa fa-lock bg-orange"></i> Change password</a>
                                 <div class="dropdown-divider"></div>
                                 <!-- Logout -->
                                 <a class="dropdown-item" href="<?= BASE_URL ?>auth/logout"><i
@@ -162,20 +160,9 @@
 
         </nav>
     </header>
-    <div class="page-content d-flex align-items-stretch">
-        <!-- Side Navbar -->
-        <nav class="side-navbar">
-            <!-- Sidebar Navidation Menus-->
-            <ul class="list-unstyled">
-                <!-- TODO: Change below session data fetching !-->
-                <?php 
-                // print_r($this->session->userdata);
-                // die();
-                include_once "menus/" . $this->session->userdata('sessions_details')['type'] . ".php"; ?>
-            </ul>
-
-        </nav>
-        <div class="content-inner">
+    <div class="page-content">
+        <div class="content-inner w-100" style="margin-left: 0;">
+                        <?php if ((int)$this->Session->getUserType() !== USER_ADMIN): ?>
         <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-bottom: 0rem">
         <p>
             <strong>Hey!</strong> You can automatically create a ticket by sending an email to support@uspharmaltd.com. You can also reply to any ticket thread from the notification email thread itself!
@@ -185,9 +172,27 @@
             </p>
             <hr>
         </div>
+        <?php endif; ?>            <?php if ($title !== 'Dashboard'): ?>
             <!-- Page Header-->
             <header class="page-header">
                 <div class="container-fluid">
                     <h2 class="no-margin-bottom"><?= $title ?></h2>
                 </div>
             </header>
+            <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
