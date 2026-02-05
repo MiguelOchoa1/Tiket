@@ -174,39 +174,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             '#ffb52e',
                             '#2bb660'
                         ],
-                        borderWidth: 1,
-                        borderRadius: 0
+                        borderWidth: 1
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    indexAxis: 'y',
                     scales: {
-                        x: {
-                            beginAtZero: true,
+                        yAxes: [{
                             ticks: {
-                                stepSize: 1
+                                beginAtZero: true
                             },
                             gridLines: {
                                 display: true
                             }
-                        },
-                        y: {
+                        }],
+                        xAxes: [{
                             gridLines: {
                                 display: false
                             }
-                        }
+                        }]
                     },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top'
-                        }
+                    legend: {
+                        display: true,
+                        position: 'top'
                     }
                 }
             });
         }
     });
     </script>
+
 
