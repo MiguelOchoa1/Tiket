@@ -144,12 +144,59 @@
 
     <script src="<?= BASE_URL ?>assets/plugins/chart.js/Chart.min.js"></script>
     <script src="<?= BASE_URL ?>assets/js/charts-home.js"></script>
-
-
-
-
-
-
-
-
-
+    <script>
+    $(document).ready(function() {
+        // Severity Bar Chart
+        var severityCtx = document.getElementById('severity-bar-graph');
+        if (severityCtx) {
+            var severityChart = new Chart(severityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Low', 'Medium', 'High', 'Critical'],
+                    datasets: [{
+                        label: 'Tickets by Severity',
+                        data: [2, 3, 3, 2],
+                        backgroundColor: [
+                            '#4de43b',
+                            '#ffb52e', 
+                            '#fe0000',
+                            '#8b0000'
+                        ],
+                        borderColor: [
+                            '#4de43b',
+                            '#ffb52e',
+                            '#fe0000',
+                            '#8b0000'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            },
+                            gridLines: {
+                                display: true
+                            }
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        enabled: true
+                    }
+                }
+            });
+        }
+    });
+    </script>
