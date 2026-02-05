@@ -129,50 +129,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         legend: {
                             display: false
                         },
-                        datalabels: {
-                            display: false
+                        tooltip: {
+                            enabled: false
                         }
                     }
-                }
+                },
+                plugins: [{
+                    afterDatasetsDraw(chart) {
+                        const {ctx, chartArea: {left, top, width, height}} = chart;
+                        ctx.save();
+                        ctx.font = 'bold 20px sans-serif';
+                        ctx.fillStyle = '#333';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(totalCount, left + width / 2, top + height / 2);
+                        ctx.restore();
+                    }
+                }]
             });
-
-            // Add center text plugin
-            Chart.helpers.drawRoundedRectangle = function(ctx, x, y, width, height, radius) {
-                ctx.beginPath();
-                ctx.moveTo(x + radius, y);
-                ctx.lineTo(x + width - radius, y);
-                ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-                ctx.lineTo(x + width, y + height - radius);
-                ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-                ctx.lineTo(x + radius, y + height);
-                ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-                ctx.lineTo(x, y + radius);
-                ctx.quadraticCurveTo(x, y, x + radius, y);
-                ctx.closePath();
-            };
-
-            var plugin = {
-                afterDatasetsDraw: function(chart) {
-                    var width = chart.chart.width,
-                        height = chart.chart.height,
-                        ctx = chart.chart.ctx;
-
-                    ctx.restore();
-                    var fontSize = (height / 200).toFixed(2);
-                    ctx.font = 'bold ' + fontSize * 16 + 'px sans-serif';
-                    ctx.textBaseline = 'top';
-                    ctx.fillStyle = '#333';
-
-                    var text = totalCount,
-                        textX = Math.round((width - ctx.measureText(text).width) / 2),
-                        textY = height / 2 - (fontSize * 7);
-
-                    ctx.fillText(text, textX, textY);
-                    ctx.save();
-                }
-            };
-            pieChart.pluginTooltips = [];
-            Chart.pluginService.register(plugin);
         }
 
         // Severity Bar Chart
@@ -226,3 +200,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     });
     </script>
+
