@@ -16,6 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <h1 class="h2 mb-3 mb-lg-4">Dashboard</h1>
 
+        <!-- First Row: All Tickets + Severity Chart -->
         <div class="row dashboard-top-row align-items-stretch no-gutters" style="margin-left:0; margin-right:0;">
             <div class="col-md-3" style="padding-left:1px; padding-right:1px;">
                 <a href="<?= BASE_URL ?>tickets" class="w-100" style="display:block; width:100%;">
@@ -24,20 +25,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="text" style="width: 100%; display: flex; align-items: center; justify-content: center; flex: 1; font-size: 120px; line-height: 1;"><strong><?= $stats['total_tickets'] ?></strong></div>
                     </div>
                 </a>
-
-                <div class="col-md-9 d-flex" style="padding-left:1px; padding-right:1px;">
-                    <div class="bar-chart-example card custom-border-radius w-100 severity-card" style="height: 360px; min-height:360px; margin:0;">
-                        <div class="card-header d-flex align-items-center custom-border-radius" style="padding: 10px 14px;">
-                            <h2 class="h3">Ticket Status By Severity</h2>
-                        </div>
-                        <div class="card-body" style="padding: 8px 14px 12px 18px; height: 260px; display: block;">
-                            <canvas id="severity-bar-graph" height="240" style="display: block; width: 100%; height: 240px;"></canvas>
-                        </div>
+            </div>
+            <div class="col-md-9" style="padding-left:1px; padding-right:1px;">
+                <div class="bar-chart-example card custom-border-radius w-100 severity-card" style="height: 360px; min-height:360px; margin:0;">
+                    <div class="card-header d-flex align-items-center custom-border-radius" style="padding: 10px 14px;">
+                        <h2 class="h3">Ticket Status By Severity</h2>
+                    </div>
+                    <div class="card-body" style="padding: 8px 14px 12px 18px; height: 260px; display: block;">
+                        <canvas id="severity-bar-graph" height="240" style="display: block; width: 100%; height: 240px;"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Second Row: Ticket Status + Total Users + Assigned + Closed -->
         <div class="row align-items-stretch no-gutters" style="margin-top: 2px; margin-left:0; margin-right:0;">
             <div class="col-md-3" style="padding-left:1px; padding-right:1px;">
                 <div class="statistic statistic-lg bg-white has-shadow custom-border-radius" style="height: 360px; min-height: 360px; margin:0; padding: 14px 16px; width:100%; display: flex; flex-direction: column; justify-content: flex-start;">
@@ -127,26 +128,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     plugins: {
                         legend: {
                             display: false
+                        },
+                        datalabels: {
+                            display: false
                         }
                     }
                 }
             });
 
-            // Add center text to doughnut chart
+            // Add center text plugin
+            Chart.helpers.drawRoundedRectangle = function(ctx, x, y, width, height, radius) {
+                ctx.beginPath();
+                ctx.moveTo(x + radius, y);
+                ctx.lineTo(x + width - radius, y);
+                ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+                ctx.lineTo(x + width, y + height - radius);
+                ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                ctx.lineTo(x + radius, y + height);
+                ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+                ctx.lineTo(x, y + radius);
+                ctx.quadraticCurveTo(x, y, x + radius, y);
+                ctx.closePath();
+            };
+
             var plugin = {
-                id: 'centerText',
-                beforeDatasetsDraw(chart) {
-                    const {width, height, ctx} = chart;
+                afterDatasetsDraw: function(chart) {
+                    var width = chart.chart.width,
+                        height = chart.chart.height,
+                        ctx = chart.chart.ctx;
+
                     ctx.restore();
-                    ctx.font = 'bold 18px sans-serif';
-                    ctx.textBaseline = 'middle';
+                    var fontSize = (height / 200).toFixed(2);
+                    ctx.font = 'bold ' + fontSize * 16 + 'px sans-serif';
+                    ctx.textBaseline = 'top';
                     ctx.fillStyle = '#333';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(totalCount, width / 2, height / 2);
+
+                    var text = totalCount,
+                        textX = Math.round((width - ctx.measureText(text).width) / 2),
+                        textY = height / 2 - (fontSize * 7);
+
+                    ctx.fillText(text, textX, textY);
                     ctx.save();
                 }
             };
-            pieChart.plugins.register(plugin);
+            pieChart.pluginTooltips = [];
+            Chart.pluginService.register(plugin);
         }
 
         // Severity Bar Chart
@@ -194,9 +220,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     },
                     legend: {
                         display: false
-                    },
-                    tooltips: {
-                        enabled: true
                     }
                 }
             });

@@ -42,7 +42,7 @@
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/custom.css?v=20260205pie">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/custom.css?v=20260205layout">
     <!-- Favicon-->
     <link rel="shortcut icon" href="<?= BASE_URL ?>assets/img/favicon.ico">
     <!-- Toastr -->
@@ -180,6 +180,7 @@
                 </div>
             </header>
             <?php endif; ?>
+
 
 
 
