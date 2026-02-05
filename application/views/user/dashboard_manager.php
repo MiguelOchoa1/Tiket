@@ -150,54 +150,63 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
         }
 
-        // Severity Bar Chart
+        // Ticket Status by Severity Bar Chart
         var severityCtx = document.getElementById('severity-bar-graph');
         if (severityCtx) {
+            var openCount = parseInt('<?= ["open_tickets"] ?>') || 0;
+            var assignedCount = parseInt('<?= ["assigned_tickets"] ?>') || 0;
+            var closedCount = parseInt('<?= ["closed_tickets"] ?>') || 0;
+
             var severityChart = new Chart(severityCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['Low', 'Medium', 'High', 'Critical'],
+                    labels: ['Open', 'Assigned', 'Closed'],
                     datasets: [{
-                        label: 'Tickets by Severity',
-                        data: [2, 3, 3, 2],
+                        label: 'Tickets',
+                        data: [openCount, assignedCount, closedCount],
                         backgroundColor: [
-                            '#4de43b',
-                            '#ffb52e',
                             '#fe0000',
-                            '#8b0000'
+                            '#ffb52e',
+                            '#2bb660'
                         ],
                         borderColor: [
-                            '#4de43b',
-                            '#ffb52e',
                             '#fe0000',
-                            '#8b0000'
+                            '#ffb52e',
+                            '#2bb660'
                         ],
-                        borderWidth: 1
+                        borderWidth: 1,
+                        borderRadius: 0
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    indexAxis: 'y',
                     scales: {
-                        yAxes: [{
+                        x: {
+                            beginAtZero: true,
                             ticks: {
-                                beginAtZero: true
+                                stepSize: 1
                             },
                             gridLines: {
                                 display: true
                             }
-                        }],
-                        xAxes: [{
+                        },
+                        y: {
                             gridLines: {
                                 display: false
                             }
-                        }]
+                        }
                     },
-                    legend: {
-                        display: false
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
                     }
                 }
             });
         }
     });
     </script>
+
