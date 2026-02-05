@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class User extends MY_Controller
 {
@@ -56,6 +56,9 @@ class User extends MY_Controller
 	public function dashboard_manager()
 	{
 		$data['stats']['total_tickets'] = count($this->Tickets->getBy(null,array()));
+        $date_start = date('Y-m-d 00:00:00');
+        $date_end = date('Y-m-d 23:59:59');
+        $data['stats']['created_today'] = count($this->Tickets->getBy(null, array('created >=' => $date_start, 'created <=' => $date_end)));
 		$data['stats']['open_tickets'] = count($this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_OPEN)));
 		$data['stats']['assigned_tickets'] = count($this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_ASSIGNED)));
 		$data['stats']['closed_tickets'] = count($this->Tickets->getRecentTickets(array('status' => TICKET_STATUS_CLOSED)));
@@ -145,5 +148,7 @@ class User extends MY_Controller
 
 // End of Class
 }
+
+
 
 
