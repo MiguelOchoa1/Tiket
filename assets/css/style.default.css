@@ -1,4 +1,4 @@
-/*
+﻿/*
 ==========================================================
 ==========================================================
 
@@ -1921,18 +1921,10 @@ input.input-material.is-invalid ~ label {
   right: 0;
 }
 
-.login-page .container {
-  min-height: 100vh;
-  z-index: 999;
-  padding: 20px;
-  position: relative;
+
 }
 
-.login-page .form-holder {
-  width: 100%;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 50px;
+
 }
 
 .login-page .form-holder .info, .login-page .form-holder .form {

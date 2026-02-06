@@ -51,13 +51,6 @@
                         }
                     },
                     {
-                        title: "Mobile",
-                       data: "mobile",
-                        render: function (data) {
-                            return data? data : '-'
-                        }
-                    },
-                    {
                         title: "Username",
                         data: "username",
                         render: function (data) {

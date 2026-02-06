@@ -58,28 +58,8 @@
     <section class="feeds">
         <div class="container-fluid col-left-no-padding">
             <div class="row">
-                <div class="col-lg-6 d-flex">
-                    <div class="card custom-border-radius w-100">
-                        <div class="card-header d-flex align-items-center  custom-border-radius">
-                            <h2 class="h3">Tickets status</h2>
-                        </div>
-                        <div class="work-amount">
-                            <div class="card-body">
-                                <div class="chart text-center">
-                                    <iframe class="chartjs-hidden-iframe" tabindex="-1"
-                                            style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-                                    <div class="text"><strong><?= $stats['total_tickets'] ?></strong><br><span>Total Tickets</span>
-                                    </div>
-                                    <canvas id="pieChart"
-                                            style="display: block; width: height: 100%; height: 100%"></canvas>
-                                </div>
-                                <div class="text-center">Open, Assigned and Closed Tickets stats.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Trending Articles-->
-                <div class="col-lg-6 d-flex">
+                <div class="col-lg-12 d-flex">
                     <div class="recent-updates card custom-border-radius  w-100">
                         <div class="card-header d-flex align-items-center  custom-border-radius">
                             <h2 class="h3">Recent Tickets</h2>
@@ -329,41 +309,6 @@
         </div>
     </section>
 
-    <script>
-        var PIECHART = $('#pieChart');
-        var myPieChart = new Chart(PIECHART, {
-            type: 'doughnut',
-            options: {
-                cutoutPercentage: 80,
-                legend: {
-                    display: false
-                }
-            },
-            data: {
-                labels: [
-                    "Open",
-                    "Assigned",
-                    "Closed"
-                ],
-                datasets: [
-                    {
-                        data: [<?= $stats['open_tickets'] ?>, <?= $stats['assigned_tickets'] ?>, <?= $stats['closed_tickets'] ?>],
-                        borderWidth: [0, 0, 0, 0],
-                        backgroundColor: [
-                            '#ffc36d',
-                            "#17a2b8",
-                            "#ff7676"
-                        ],
-                        hoverBackgroundColor: [
-                            '#e2ab62',
-                            "#15788d",
-                            "#cc5d5d"
-                        ]
-                    }]
-            }
-        });
-
-    </script>
     <script>
         // Toggle Applications section
         function toggleApplications() {

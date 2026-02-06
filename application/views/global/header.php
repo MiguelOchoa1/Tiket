@@ -40,7 +40,7 @@
     <!-- Google fonts - Poppins -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.default.css?v=<?php echo time(); ?>" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/custom.css?v=20260205a1hartfix">
     <!-- Favicon-->
@@ -102,6 +102,12 @@
         setTimeout(function () {
             $('.event-notification').fadeOut('fast');
         }, 5000); // <-- time in milliseconds
+        // Fix dropdown toggle behavior
+        $(document).on('click', '#navbarDropdown', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).dropdown('toggle');
+        });
     </script>
 
 </head>
@@ -140,8 +146,7 @@
 
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle sidebar-header d-flex align-items-center" href="#"
-                               id="navbarDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle sidebar-header d-flex align-items-center" data-toggle="dropdown" role="button" id="navbarDropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
                                 <div class="current-user-avatar" data-username="<?= $this->Session->getLoggedDetails()['username']?>"></div>
                                 <div class="title pl-2">
                                     <?= $this->Session->getLoggedDetails()['username']?>
@@ -182,6 +187,8 @@
                 </div>
             </header>
             <?php endif; ?>
+
+
 
 
 

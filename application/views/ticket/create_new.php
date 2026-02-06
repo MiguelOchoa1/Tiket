@@ -1,4 +1,4 @@
-<section class="forms">
+﻿<section class="forms">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -11,15 +11,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <form>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <label class="col-sm-2 form-control-label" for="subject">Subject</label>
-                                            <div class="col-sm-6">
-                                                <input id="subject" type="text" name="subject" required=""
-                                                       class="form-control" placeholder="Subject of the ticket">
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="form-group">
                                         <div class="row">
                                             <label class="col-sm-2 form-control-label">Category</label>
@@ -199,7 +191,7 @@
                 'data': data
             }
             console.log(fdata);
-            if (!purpose || !subject || !message) {
+            if (!purpose || !message) {
                 showNotification('error', 'Please fill all fields.');
             } else {
                 $.ajax({
